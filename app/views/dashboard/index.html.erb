@@ -1,0 +1,75 @@
+<h3>All Open Issues. Search by user :
+<% form_tag('byuser') do %>
+  <%= select("user", "user_id", options_for_select(User.all.collect {|p| [ p.name, p.id ]}, 1))  %>
+  <%= submit_tag("go") %>
+<% end %>
+</h3>
+
+<% if !@articles_no_reply.empty? %>
+  <h3>Articles without a reply, not closed</h3>
+  <table>
+    <thead>
+      <tr align="left">
+        <th>date</th>
+        <th>Author</th>
+        <th>Subject</th>
+        <th>#r</th>
+        <th>type</th>
+        <th>assigned</th>
+        <th>status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <% @articles_no_reply.each_with_index { |a, i| %>
+      <% row_class = i%2 == 0 ? "even" : "odd" %>
+
+      <% form_for (a) do |f| %>
+      <tr class = <%= row_class %> align="left">
+        <td width="5%"><%= display_date(a.link_time) %></td>
+        <td width="10%"><%= a.author %></td>
+        <td width="40%"><%= link_to a.subject, "http://groups.google.com" + a.url %></td>
+        <td width="5%"><%= a.replies %></td>
+        <td width="10%"><%= select("article", "category_id", options_for_select(Category.all.collect {|p| [ p.name, p.id ]}, a.category_id))  %></td>
+        <td width="10%"><%= select("article", "user_id", options_for_select(User.all.collect {|p| [ p.name, p.id ]}, a.user_id))  %></td>
+        <td width="10%"><%= select("article", "status_id", options_for_select(Status.all.collect {|p| [ p.name, p.id ]}, a.status_id))  %></td>
+        <td width="10%"><%= f.submit "save" %></td>
+      </tr>
+      <% end %>
+    <% } %>
+  </table>
+<% else %>
+  <h3> No articles without a reply that are not closed </h3>
+<% end %>
+
+<h3>Open issues</h3>
+<table>
+  <thead>
+    <tr align="left">
+      <th>date</th>
+      <th>Author</th>
+      <th>Subject</th>
+      <th>#r</th>
+      <th>type</th>
+      <th>assigned</th>
+      <th>status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @articles.each_with_index { |a, i| %>
+      <% row_class = i%2 == 0 ? "even" : "odd" %>      
+      <% form_for (a) do |f| %>
+          <tr class = <%= row_class %> align="left">
+            <td width="5%"><%= display_date(a.link_time) %></td>
+            <td width="10%"><%= a.author %></td>
+            <td width="40%"><%= link_to a.subject, "http://groups.google.com" + a.url %></td>
+            <td width="2%"><%= a.replies %></td>
+            <td width="4%"><%= select("article", "category_id", options_for_select(Category.all.collect {|p| [ p.name, p.id ]}, a.category_id))  %></td>
+            <td width="4%"><%= select("article", "user_id", options_for_select(User.all.collect {|p| [ p.name, p.id ]}, a.user_id))  %></td>
+            <td width="4%"><%= select("article", "status_id", options_for_select(Status.all.collect {|p| [ p.name, p.id ]}, a.status_id))  %></td>
+            <td width="4%"><%= f.submit "save" %></td>
+          </tr>
+      <% end %>
+  <% } %>
+</table>
+
