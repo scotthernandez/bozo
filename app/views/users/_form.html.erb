@@ -1,4 +1,16 @@
 <%= semantic_form_for @user do |form| %>
-   <%= form.inputs %>
+   <%= form.inputs do %>
+        <%= form.input :nick,   :label => "nick" %>
+        <%= form.input :email,   :label => "email" %>
+        <%= form.input :gmail,   :label => "email alert?"%>
+        <%= form.input :estime,  :label => "start time (24 hr)" %>
+        <%= form.input :eetime,  :label => "end time" %>
+        <%= form.input :sms,     :label => "sms alert?" %>
+        <%= form.input :sstime,  :label => "start time (24 hr)" %>
+        <%= form.input :setime,  :label => "end time" %>
+        <%= form.input :weekend, :label => "weekend ?" %>
+
+   <% end %>
    <%= form.buttons %>
 <% end %>
+

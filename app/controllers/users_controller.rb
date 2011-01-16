@@ -40,11 +40,28 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+
+    logger.info ">>>>> new"
+
+    @user = User.new
 
     respond_to do |format|
+      @user.email = params[:user][:email]
+      @user.nick = params[:user][:nick]
+      @user.weekend = params[:user][:weekend]
+      @user.sms = params[:user][:sms]
+      @user.gmail = params[:user][:gmail]
+      @user.estime = params[:user][:estime]
+      @user.eetime = params[:user][:eetime]
+      @user.sstime = params[:user][:sstime]
+      @user.setime = params[:user][:setime]
+
+      logger.info ">>>>> new .... #{@user.nick}"
+      logger.info ">>>>> new .... #{@user.email}"
+
+
       if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        format.html { redirect_to(@user, :notice => "#{@user} User was successfully created.") }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -57,22 +74,22 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
 
-    logger.info('in update')
-
     @user = User.find(params[:id])
 
     respond_to do |format|
+      @user.email = params[:user][:email]
+      @user.nick = params[:user][:nick]
       @user.weekend = params[:user][:weekend]
       @user.sms = params[:user][:sms]
       @user.gmail = params[:user][:gmail]
       @user.estime = params[:user][:estime]
-      @user.estime = params[:user][:eetime]
-      @user.estime = params[:user][:sstime]
-      @user.estime = params[:user][:setime]
+      @user.eetime = params[:user][:eetime]
+      @user.sstime = params[:user][:sstime]
+      @user.setime = params[:user][:setime]
 
 
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => "#{params[:user]} User was successfully updated.") }
+        format.html { redirect_to(@user, :notice => "User was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -93,3 +110,4 @@ class UsersController < ApplicationController
     end
   end
 end
+

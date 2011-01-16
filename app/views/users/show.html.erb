@@ -1,44 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
 
-<p>
-  <b>Email Alert:</b>
-  <%= @user.gmail %>
-</p>
+<table>
+  <tr align="left"><td>Nick</td>            <td><%= @user.nick %></td></tr>
+  <tr align="left"><td>Email</td>           <td><%= @user.email %></td></tr>
+  <tr align="left"><td>Email Alert:</td>    <td><%= @user.gmail %></td></tr>
+  <tr align="left"><td>start</td>           <td><%= @user.estime %></td></tr>
+  <tr align="left"><td>end</td>             <td><%= @user.eetime %></td></tr>
+  <tr align="left"><td>SMS Alerts</td>      <td><%= @user.sms %></td></tr>
+  <tr align="left"><td>start</td>           <td><%= @user.sstime %></td></tr>
+  <tr align="left"><td>end</td>             <td><%= @user.setime %></td></tr>
+  <tr align="left"><td>Weekend</td>         <td><%= @user.weekend %></td></tr>
+</table>
 
-<p>
-  <b>start</b>
-  <%= @user.estime %>
-</p>
-
-<p>
-  <b>end</b>
-  <%= @user.eetime %>
-</p>
-
-<p>
-  <b>SMS Alerts</b>
-  <%= @user.sms %>
-</p>
-<p>
-  <b>start</b>
-  <%= @user.sstime %>
-</p>
-
-<p>
-  <b>end</b>
-  <%= @user.setime %>
-</p>
-
-<p>
-  <b>Weekend</b>
-  <%= @user.weekend %>
-</p>
-
-
+<br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

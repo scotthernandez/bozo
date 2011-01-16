@@ -2,11 +2,12 @@
 
 <table>
   <tr align="left">
+    <th>Nick</th>
     <th>Email</th>
-    <th>Email y</th>
+    <th>Email-alert</th>
     <th>start</th>
     <th>end</th>
-    <th>SMS</th>
+    <th>SMS Alert</th>
     <th>start</th>
     <th>end</th>
     <th>weekend</th>
@@ -15,8 +16,9 @@
     <th></th>
   </tr>
 
-<% @users.each do |user| %>
+<%= @users.each do |user| %>
   <tr align="left">
+    <td><%= user.nick %></td>
     <td><%= user.email %></td>
     <td><%= user.gmail %></td>
     <td><%= user.estime %></td>

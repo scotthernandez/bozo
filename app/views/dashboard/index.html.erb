@@ -1,5 +1,5 @@
 <h3>All Open Issues. Search by user :
-<% form_tag(dashboard_byuser_path) do %>
+<%= form_tag(dashboard_byuser_path) do %>
   <%= select("user", "user_id", options_for_select(User.all.collect {|p| [ p.email, p.id ]}, 1))  %>
   <%= submit_tag("go") %>
 <% end %>
@@ -21,10 +21,10 @@
       </tr>
     </thead>
 
-    <% @articles_no_reply.each_with_index { |a, i| %>
-      <% row_class = i%2 == 0 ? "even" : "odd" %>
+    <%= @articles_no_reply.each_with_index { |a, i| %>
+      <%= row_class = i%2 == 0 ? "even" : "odd" %>
 
-      <% form_for (a) do |f| %>
+      <%= form_for (a) do |f| %>
       <tr class = <%= row_class %> align="left">
         <td width="5%"><%= display_date(a.link_time) %></td>
         <td width="10%"><%= a.author %></td>
@@ -56,9 +56,9 @@
       <th></th>
     </tr>
   </thead>
-  <% @articles.each_with_index { |a, i| %>
-      <% row_class = i%2 == 0 ? "even" : "odd" %>      
-      <% form_for (a) do |f| %>
+  <%= @articles.each_with_index { |a, i| %>
+      <%= row_class = i%2 == 0 ? "even" : "odd" %>
+      <%= form_for (a) do |f| %>
           <tr class = <%= row_class %> align="left">
             <td width="5%"><%= display_date(a.link_time) %></td>
             <td width="10%"><%= a.author %></td>
