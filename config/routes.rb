@@ -1,4 +1,6 @@
 Bozo::Application.routes.draw do
+  devise_for :users
+
   resources :users
   resources :articles
   resources :categories

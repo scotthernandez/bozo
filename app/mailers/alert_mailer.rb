@@ -5,7 +5,7 @@ class AlertMailer < ActionMailer::Base
      @thread = thread
      @subject = subject
 
-     @to = User.find(:all, :conditions => "email_y = true")
+     @to = User.find(:all, :conditions => " email_y = true")
 
      if !(@to.empty?)
        logger.info  "Sending alert emails"

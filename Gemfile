@@ -9,4 +9,6 @@ gem 'pg'
 gem "nokogiri"
 gem "chronic"
 gem 'whenever', :require => false
+gem 'devise'
+gem 'formtastic', '~> 1.1.0'
 

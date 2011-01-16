@@ -1,5 +1,5 @@
 <h1> Select User</h1>
 <% form_tag('byuser') do %>
-  <%= select("user", "user_id", options_for_select(User.all.collect {|p| [ p.name, p.id ]}, 1))  %>
+  <%= select("user", "user_id", options_for_select(User.all.collect {|p| [ p.email, p.id ]}, 1))  %>
   <%= submit_tag("go") %>
 <% end %>

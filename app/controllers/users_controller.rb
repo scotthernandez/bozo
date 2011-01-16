@@ -56,11 +56,23 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+
+    logger.info('in update')
+
     @user = User.find(params[:id])
 
     respond_to do |format|
+      @user.weekend = params[:user][:weekend]
+      @user.sms = params[:user][:sms]
+      @user.gmail = params[:user][:gmail]
+      @user.estime = params[:user][:estime]
+      @user.estime = params[:user][:eetime]
+      @user.estime = params[:user][:sstime]
+      @user.estime = params[:user][:setime]
+
+
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(@user, :notice => "#{params[:user]} User was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
