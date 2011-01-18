@@ -6,25 +6,15 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
-  <%= render 'layouts/header' %>
-  <br/>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <body>
+    <%= render 'layouts/header' %>
+    <br/>
 
-  <div id="user_nav">
-     <% if  user_signed_in? %>A
-       Signed in as <%= current_user.email %>.
-       not you ? <%= link_to "Sign out", destroy_user_session_path %>
-     <% else %>
-       <%= link_to "sign in", new_user_session_path %> | <%= link_to "sign up", new_user_registration_path %>
-     <% end %>
-  </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
+    <%= yield %>
 
-<%= yield %>
-
-  <%= render 'layouts/footer' %>
-
-</body>
+    <%= render 'layouts/footer' %>
+  </body>
 </html>

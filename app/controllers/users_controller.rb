@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
+    @users = User.all(:order => "nick, id ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -56,12 +56,8 @@ class UsersController < ApplicationController
       @user.sstime = params[:user][:sstime]
       @user.setime = params[:user][:setime]
 
-      logger.info ">>>>> new .... #{@user.nick}"
-      logger.info ">>>>> new .... #{@user.email}"
-
-
       if @user.save
-        format.html { redirect_to(@user, :notice => "#{@user} User was successfully created.") }
+        format.html { redirect_to(@user, :notice => "User was successfully created.") }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

@@ -12,19 +12,23 @@
       <a href="/"><img src="/images/logo_10gen.png" width="95" height="45" alt="10gen"/></a>
     </div>
 
-<!--
     <div id="nav">
       <ul>
-        <li class="current">
-          <a href="/">home</a>
-        </li>
-
         <li>
-          <a href="/dasboard/index">dashboard</a>
+          <a href="/">dashboard</a>
+        </li>
+        <li>
+          <%= link_to "My Tickets", dashboard_byuser_path %>
+        </li>
+        <li>
+           <% if  user_signed_in? %>
+            <%= link_to "Account Settings #{current_user.email}", "/users/#{current_user.id}" %><%= link_to "Sign out", destroy_user_session_path %>
+           <% else %>
+             <%= link_to "Sign in", new_user_session_path %><%= link_to "Create account", new_user_registration_path %>
+           <% end %>
         </li>
       </ul>
     </div>
--->
 
     <div id="logo-mongodb">
       <a href="http://mongodb.org"><img src="/images/mongodb.png"></a>

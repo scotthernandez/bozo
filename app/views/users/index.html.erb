@@ -1,4 +1,4 @@
-<h1>Listing users</h1>
+<h1>Listing users:</h1>
 
 <table>
   <tr align="left">
@@ -16,7 +16,7 @@
     <th></th>
   </tr>
 
-<%= @users.each do |user| %>
+<% @users.each do |user| %>
   <tr align="left">
     <td><%= user.nick %></td>
     <td><%= user.email %></td>
@@ -35,5 +35,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New User', new_user_path %>

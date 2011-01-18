@@ -104,7 +104,7 @@ namespace :scrape do
       g.link_time = linkTime[i]
       g.replies   = linkReplies[i]
       g.authors   = linkAuthors[i]
-      g.user = User.first
+      g.user = User.find_by_id(1)
       g.status = s
       g.category = Category.first
       g.created_at = Time.now

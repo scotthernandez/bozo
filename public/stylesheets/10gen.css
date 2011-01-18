@@ -334,7 +334,6 @@ hr.light {
 	line-height: 1.25em;
     list-style-type: none;
     list-style-image: none;
-	text-transform: capitalize;
 }
 
 #hd div#nav li a, div#nav ul li a:visited {
