@@ -24,11 +24,11 @@
     </thead>
     <tbody>
     <% @articles_no_reply.each_with_index { |a, i| %>
-      <%= row_class = i%2 == 0 ? "even" : "odd" %>
+      <% row_class = i%2 == 0 ? "even" : "odd" %>
 
       <%= form_for (a) do |f| %>
       <tr class = <%= row_class %> align="left">
-        <td width="5%"><%= display_date(a.link_time) %></td>
+        <td width="10%"><%= display_date(a.link_time) %></td>
         <td width="10%"><%= a.author %></td>
         <td width="40%"><%= link_to a.subject, "http://groups.google.com" + a.url %></td>
         <td width="5%"><%= a.replies %></td>
@@ -41,6 +41,9 @@
     <% } %>
     </tbody>
   </table>
+
+  <%= will_paginate @articles_no_reply %>
+
 <% else %>
   <h3> No articles without a reply that are not closed </h3>
 <% end %>
@@ -61,10 +64,10 @@
   </thead>
   <tbody>
   <% @articles.each_with_index { |a, i| %>
-      <%= row_class = i%2 == 0 ? "even" : "odd" %>
+      <% row_class = i%2 == 0 ? "even" : "odd" %>
       <%= form_for (a) do |f| %>
           <tr class = <%= row_class %> align="left">
-            <td width="5%"><%= display_date(a.link_time) %></td>
+            <td width="10%"><%= display_date(a.link_time) %></td>
             <td width="10%"><%= a.author %></td>
             <td width="40%"><%= link_to a.subject, "http://groups.google.com" + a.url %></td>
             <td width="2%"><%= a.replies %></td>
@@ -77,4 +80,4 @@
   <% } %>
   </tbody>
 </table>
-
+<%= will_paginate @articles %>

@@ -11,4 +11,4 @@ gem "chronic"
 gem 'whenever', :require => false
 gem 'devise'
 gem 'formtastic', '~> 1.1.0'
-
+gem 'will_paginate', '~> 3.0pre2'

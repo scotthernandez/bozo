@@ -1,10 +1,16 @@
 class DashboardController < ApplicationController
   def index
-    @articles_no_reply = Articles.find(:all, :include => :user, :conditions => "replies = 0", :order => 'link_time DESC, id DESC')
+    @articles_no_reply = Articles.paginate( :page => params[:page], :include => :user, :conditions => "replies = 0", :order => 'link_time DESC, id DESC')
     @articles_no_reply.delete_if{|a| a.status_id == 3}
- 
-    @articles = Articles.find(:all, :conditions => "replies != 0", :order => 'link_time DESC, id DESC')
+
+#    @articles_no_reply = Articles.find(:all, :include => :user, :conditions => "replies = 0", :order => 'link_time DESC, id DESC')
+#    @articles_no_reply.delete_if{|a| a.status_id == 3}
+
+    @articles = Articles.paginate(:page => params[:page], :conditions => "replies != 0", :order => 'link_time DESC, id DESC')
     @articles.delete_if{|a| a.status_id == 3}
+
+#    @articles = Articles.find(:all, :conditions => "replies != 0", :order => 'link_time DESC, id DESC')
+#    @articles.delete_if{|a| a.status_id == 3}
 
     @closed_articles = Articles.find(:all,:order => 'link_time DESC, id DESC')
     @closed_articles.delete_if{|a| a.status_id != 3}

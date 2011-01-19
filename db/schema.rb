@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116045953) do
+ActiveRecord::Schema.define(:version => 20110119034521) do
 
   create_table "articles", :force => true do |t|
     t.string   "thread",      :limit => 40
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110116045953) do
     t.string   "sstime",               :limit => 5
     t.string   "setime",               :limit => 5
     t.string   "nick",                 :limit => 12
+    t.string   "sms_address",          :limit => 30
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
