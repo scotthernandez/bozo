@@ -1,4 +1,11 @@
+#
+#
+#
 class DashboardController < ApplicationController
+  
+  #
+  #
+  #
   def index
     @articles_no_reply = Articles.paginate( :page => params[:page], :include => :user, :conditions => "replies = 0", :order => 'link_time DESC, id DESC')
     @articles_no_reply.delete_if{|a| a.status_id == 3}
@@ -19,10 +26,18 @@ class DashboardController < ApplicationController
     @cat = Category.find(:all)
   end
 
+  
+  #
+  #
+  #
 #  def user
 #     @users = User.find(:all, :order => "id asc")
 #  end
 
+  
+  #
+  #
+  #
   def byuser
     if user_signed_in? then
       user_id = current_user.id
@@ -42,4 +57,4 @@ class DashboardController < ApplicationController
     end
   end
 
-end
+end # of class

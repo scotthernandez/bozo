@@ -1,0 +1,25 @@
+<% form_tag('/articles', :method => :put, :remote => true, :id => 'update-article-form') do %>
+  <%= hidden_field_tag 'article_id', '', :id => 'form_field_article_id' -%>
+  <%= hidden_field_tag 'category_id', '', :id => 'form_field_category_id' -%>
+  <%= hidden_field_tag 'user_id', '', :id => 'form_field_user_id' -%>
+  <%= hidden_field_tag 'status_id', '', :id => 'form_field_status_id' -%>
+<% end -%>
+
+
+<script type="text/javascript">
+  function submitUpdateArticleForm(articleId, categoryId, userId, statusId) {
+    var articleForm = $('update-article-form');
+    var hiddenParamArticleId = $('form_field_article_id');
+    var hiddenParamCategoryId = $('form_field_category_id');
+    var hiddenParamUserId = $('form_field_user_id');
+    var hiddenParamStatusId = $('form_field_status_id');
+
+    hiddenParamArticleId.value = articleId;
+    hiddenParamCategoryId.value = categoryId;
+    hiddenParamUserId.value = userId;
+    hiddenParamStatusId.value = statusId;
+
+    articleForm.action = "/articles/" + articleId;
+    articleForm.request();
+  }
+</script>

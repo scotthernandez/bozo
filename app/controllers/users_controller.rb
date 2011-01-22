@@ -1,6 +1,12 @@
+#
+#
+#
 class UsersController < ApplicationController
+ 
+  #
   # GET /users
   # GET /users.xml
+  #
   def index
     @users = User.all(:order => "nick, id ASC")
 
@@ -10,8 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #
   # GET /users/1
   # GET /users/1.xml
+  #
   def show
     @user = User.find(params[:id])
 
@@ -21,8 +30,11 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #
   # GET /users/new
   # GET /users/new.xml
+  #
   def new
     @user = User.new
 
@@ -32,15 +44,20 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #
   # GET /users/1/edit
+  #
   def edit
     @user = User.find(params[:id])
   end
 
+  
+  #
   # POST /users
   # POST /users.xml
+  #
   def create
-
     logger.info ">>>>> new"
 
     @user = User.new
@@ -66,10 +83,12 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #
   # PUT /users/1
   # PUT /users/1.xml
+  #
   def update
-
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -83,7 +102,6 @@ class UsersController < ApplicationController
       @user.sstime = params[:user][:sstime]
       @user.setime = params[:user][:setime]
 
-
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => "User was successfully updated.") }
         format.xml  { head :ok }
@@ -94,8 +112,11 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #
   # DELETE /users/1
   # DELETE /users/1.xml
+  #
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -105,5 +126,6 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-end
+  
+end # of class
 
