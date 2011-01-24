@@ -1,0 +1,29 @@
+
+<%= @data_y %>
+
+<script type="text/javascript" >
+  $(function() {
+     new Highcharts.Chart({
+         chart: {
+             renderTo: "chart_chart"
+         },
+         title: {
+             text:"Incoming by day"
+         },
+         yAxis: {
+             title: {
+                 text: "incoming"
+             }
+         },
+         series: [{
+             data: <%= @data_x %>
+
+         }]
+     });
+  });
+
+</script>
+
+<div id="chart_chart" style="width:560px; height:300px;">
+
+</div>

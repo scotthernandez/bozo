@@ -11,14 +11,3 @@ every 1.minute do
    rake "scrape:mongodb_user"
 end
 
-
-
-
-#
-# every 4.days do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   runner "AnotherModel.prune_old_records"
-# end
-
-# Learn more: http://github.com/javan/whenever

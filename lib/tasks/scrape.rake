@@ -21,6 +21,16 @@ namespace :scrape do
     end
 
 
+    def email(thread, subject)
+
+    end
+
+    def sms(thread, subject)
+
+    end
+
+
+
     # user, time, author and replies 
     linkUser = Hash.new
     linkTime = Hash.new
