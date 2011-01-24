@@ -77,7 +77,7 @@ namespace :scrape do
             "authors"   => linkAuthors[i] }
 
 
-    res = Articles.find(:first, :conditions => "thread = '#{linkId[i]}'")
+    res = Article.find(:first, :conditions => "thread = '#{linkId[i]}'")
   
     # article  already in database
 
@@ -106,7 +106,7 @@ namespace :scrape do
     else
       s = Status.find_by_name("Open")
 
-      g = Articles.new
+      g = Article.new
       g.thread = linkId[i]
       g.url       = linkUrl[i]
       g.subject   = linkText[i]
