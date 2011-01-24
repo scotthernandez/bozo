@@ -1,6 +1,4 @@
 
-<%= @data_y %>
-
 <script type="text/javascript" >
   $(function() {
      new Highcharts.Chart({
@@ -9,6 +7,9 @@
          },
          title: {
              text:"Incoming by day"
+         },
+         xAxis: {
+            categories: [<%= @data_y.map { |x| "'#{x}'" }.join(',') %>]
          },
          yAxis: {
              title: {

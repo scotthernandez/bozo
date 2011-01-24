@@ -10,21 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110119034521) do
+ActiveRecord::Schema.define(:version => 20110124223456) do
 
   create_table "articles", :force => true do |t|
-    t.string   "thread",      :limit => 40
-    t.string   "url",         :limit => 40
-    t.string   "author",      :limit => 80
+    t.string   "thread",        :limit => 40
+    t.string   "url",           :limit => 40
+    t.string   "author",        :limit => 80
     t.integer  "replies"
     t.integer  "authors"
     t.datetime "link_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subject",     :limit => 140
+    t.string   "subject",       :limit => 140
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "status_id"
+    t.datetime "date_assigned"
+    t.datetime "date_closed"
   end
 
   create_table "categories", :force => true do |t|
