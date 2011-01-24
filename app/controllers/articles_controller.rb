@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   #
   #
   def update
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
 
     @article.category_id  = params[:category_id] if params[:category_id] != "-1"
     @article.status_id    = params[:status_id]   if params[:status_id] != "-1"
