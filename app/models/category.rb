@@ -1,3 +1,12 @@
-class Category < ActiveRecord::Base
-  has_many :categories
-end
+#
+#
+#
+class Category
+  include MongoMapper::Document
+  
+  many :categories
+
+  
+  key :name, String
+  
+end # of class

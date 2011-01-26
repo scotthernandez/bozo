@@ -1,3 +1,12 @@
-class Status < ActiveRecord::Base
-  has_many :articles
-end
+#
+#
+#
+class Status
+  include MongoMapper::Document
+  
+  many :articles
+  
+  
+  key :name, String
+  
+end # of class

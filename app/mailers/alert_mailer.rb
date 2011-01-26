@@ -24,7 +24,7 @@ class AlertMailer < ActionMailer::Base
 
 
   def send_email(user)
-    if user.gmail then    #user wants email
+    if user.email then    #user wants email
       t = Time.now.strftime("%H:%M")
 
       # no time specified means always

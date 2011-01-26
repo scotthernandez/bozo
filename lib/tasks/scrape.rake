@@ -22,11 +22,9 @@ namespace :scrape do
 
 
     def email(thread, subject)
-
     end
 
     def sms(thread, subject)
-
     end
 
 
@@ -67,26 +65,16 @@ namespace :scrape do
 
     (0..(linkId.length-1)).each { |i|
 
+    res = Article.where(:thread => linkId[i]).first
 
-    doc = { "thread" => linkId[i],
-            "url"       => linkUrl[i],
-            "subject"   => linkText[i],
-            "author"    => linkUser[i],
-            "time"      => linkTime[i],
-            "replies"   => linkReplies[i],
-            "authors"   => linkAuthors[i] }
-
-
-    res = Article.find(:first, :conditions => "thread = '#{linkId[i]}'")
-  
     # article  already in database
-
     if (not res.nil?)
       begin
         puts "Article already in collection #{i} #{linkId[i]}  #{linkTime[i]}\n"
         puts "(#{res.authors}):#{linkAuthors[i]} (#{res.link_time}):#{linkTime[i]} (#{res.replies}):#{linkReplies}"
+        
         res.authors    = linkAuthors[i].to_i
-        res.link_time = linkTime[i]
+        res.link_time = Time.zone.parse(linkTime[i])
         res.replies   = linkReplies[i].to_i
         res.save
       rescue Exception => e
@@ -105,18 +93,16 @@ namespace :scrape do
 
     else
       s = Status.find_by_name("Open")
-
       g = Article.new
       g.thread = linkId[i]
       g.url       = linkUrl[i]
       g.subject   = linkText[i]
       g.author    = linkUser[i]
-      g.link_time = linkTime[i]
+      g.link_time = Time.zone.parse(linkTime[i])
       g.replies   = linkReplies[i]
       g.authors   = linkAuthors[i]
       g.user = User.find_by_id(1)
       g.status = s
-      g.category = Category.first
       g.created_at = Time.now
   
       g.save

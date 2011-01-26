@@ -12,14 +12,30 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
-    @article.category_id  = params[:category_id] if params[:category_id] != "-1"
-    @article.status_id    = params[:status_id]   if params[:status_id] != "-1"
-    @article.user_id      = params[:user_id]     if params[:user_id] != "-1"
+    if params[:category_id] != "-1"
+      category = Category.find(params[:category_id])
+      @article.category_id = category.id
+      @article.category_name = category.name
+    end
+    
+    if params[:user_id] != "-1"
+      user = User.find(params[:user_id])
+      @article.user_id       = user && user.id
+      @article.user_nickname = user && user.nick      
+      @article.date_assigned = user && (@article.date_assigned || Time.now) 
+    end
+    
+    if params[:status_id] != "-1"
+      status = Status.find(params[:status_id])
+      @article.status_id   = status && status.id
+      @article.status_name = status && status.name      
+      @article.date_closed = status && ((status.name == "Closed") ? Time.now : nil) 
+    end
 
     if @article.save
       flash[:success] = "Article updated."
     else
-      flash[:success] = "problem."
+      flash[:error] = "Error saving article."
     end
 
     respond_with(@article)

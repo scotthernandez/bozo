@@ -8,11 +8,12 @@
 
 <script type="text/javascript">
   function submitUpdateArticleForm(articleId, categoryId, userId, statusId) {
-    var articleForm = $('update-article-form');
-    var hiddenParamArticleId = $('form_field_article_id');
-    var hiddenParamCategoryId = $('form_field_category_id');
-    var hiddenParamUserId = $('form_field_user_id');
-    var hiddenParamStatusId = $('form_field_status_id');
+    var articleFormObj = $('#update-article-form');
+    var articleForm = $('#update-article-form').get(0);
+    var hiddenParamArticleId = $('#form_field_article_id').get(0);
+    var hiddenParamCategoryId = $('#form_field_category_id').get(0);
+    var hiddenParamUserId = $('#form_field_user_id').get(0);
+    var hiddenParamStatusId = $('#form_field_status_id').get(0);
 
     hiddenParamArticleId.value = articleId;
     hiddenParamCategoryId.value = categoryId;
@@ -20,6 +21,6 @@
     hiddenParamStatusId.value = statusId;
 
     articleForm.action = "/articles/" + articleId;
-    articleForm.request();
+    $.post(articleForm.action, articleFormObj.serialize());
   }
 </script>

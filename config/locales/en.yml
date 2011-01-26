@@ -2,4 +2,37 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      default: "%m/%d/%Y"     # 07/21/2010
+            
+      short: "%m/%d/%y"       # 07/21/08
+      without_year: "%m/%d"   # 07/21
+      
+      long: "%A, %B %d, %Y"           # Monday, July 21, 2010
+      long_without_wday: "%B %d, %Y"  # July 21, 2010
+      long_without_year: "%A, %B %d"  # Monday, July 21"
+      
+      mon_and_mday: "%b %d"       # Jul 21
+      long_mon_and_mday: "%B %d"  # July 21
+      
+      long_mon: "%B"  # July
+      wday: "%a"      # Mon
+      
+      wday_and_short_date: "%a, %m/%d"      # Mon, 07/21
+      long_wday_and_short_date: "%A, %m/%d" # Monday, 07/21      
+            
+      mon_and_year: "%b %Y"       # Jul 2010
+      long_mon_and_year: "%B %Y"  # July 2010
+      
+  time:
+    formats:
+      default: "%I:%M %p"             # 06:30 am (note: hour will be padded with a whitespace)
+      
+      short_datetime: "%m/%d %I:%M %p"   # 07/21/2010 08:30 am
+
+      datetime: "%m/%d/%Y %I:%M %p"   # 07/21/2010 08:30 am
+      date: "%m/%d/%Y"                # 07/21/2010 
+      
+      long_datetime: "%A, %B %d, %Y %I:%M %p"               # Monday, July 21, 2010 08:30 am
+      long_datetime_without_wday: "%A, %B %d, %Y %I:%M %p"  # July 21, 2010 08:30 am

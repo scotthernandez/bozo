@@ -1,6 +1,6 @@
 <!--
 <h3>All Open Issues. Search by user :
-<%= form_tag(dashboard_byuser_path) do %>
+<%= form_tag(byuser_dashboard_path) do %>
   <%= select("user", "user_id", options_for_select(User.all.collect { |p| [p.email, p.id] }, 1)) %>
   <%= submit_tag("go") %>
 <% end %>
@@ -59,4 +59,8 @@
     <% } %>
   </tbody>
 </table>
+<br/>
+
 <%= will_paginate @articles %>
+<br/>
+<br/>
