@@ -23,8 +23,8 @@ class Article
   key :authors        
   key :link_time,     Time  
   key :subject,       String
-  key :date_assigned, Time 
-  key :date_closed,   Time 
+  key :time_assigned, Time 
+  key :time_closed,   Time 
   timestamps!
   
   # Cached values

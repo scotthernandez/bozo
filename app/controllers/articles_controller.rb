@@ -22,14 +22,14 @@ class ArticlesController < ApplicationController
       user = User.find(params[:user_id])
       @article.user_id       = user && user.id
       @article.user_nickname = user && user.nick      
-      @article.date_assigned = user && (@article.date_assigned || Time.now) 
+      @article.time_assigned = user && (@article.time_assigned || Time.now) 
     end
     
     if params[:status_id] != "-1"
       status = Status.find(params[:status_id])
       @article.status_id   = status && status.id
       @article.status_name = status && status.name      
-      @article.date_closed = status && ((status.name == "Closed") ? Time.now : nil) 
+      @article.time_closed = status && ((status.name == "Closed") ? Time.now : nil) 
     end
 
     if @article.save

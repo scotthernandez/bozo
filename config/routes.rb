@@ -6,7 +6,14 @@ Bozo::Application.routes.draw do
   resources :users
   resources :articles
   resources :categories
-  resources :stats
+  
+  resources :stats do 
+    collection do
+      get :incoming_by_day
+      get :closed_by_day
+      get :incoming_by_hour
+    end
+  end
 
   resource :dashboard, :controller => 'dashboard' do
     collection do

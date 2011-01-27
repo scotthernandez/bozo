@@ -1,0 +1,48 @@
+
+<% @day_stats.each_with_index do |stats_map, i| %>
+
+    <%
+        date    = stats_map[:date]
+        stats   = stats_map[:stats] 
+        @data_x = stats.keys
+        @data_x.map! {|d| (d % 12) + 1 }        
+        @data_x[@data_x.length - 1] = "Midnight"        
+        @data_x[11] = "Noon"        
+       
+        @data_y = stats.values
+    %>
+    
+    <script type="text/javascript">
+        $(function() {
+            new Highcharts.Chart({
+                chart: {
+                    renderTo: "chart_<%= i %>"
+                },
+                title: {
+                    text:"Incoming by hour - <%= l(date, :format => :wday_and_short_date) %>"
+                },
+                xAxis: {
+                    categories: [<%= @data_x.map { |x| "'#{x}'" }.join(',') %>]
+                },
+                yAxis: {
+                    title: {
+                        text: "incoming"
+                    }
+                },
+                series: [
+                    {
+                        name: "Articles",
+                        data: <%= @data_y %>
+
+                    }
+                ]
+            });
+        });
+
+    </script>
+
+    <div id="chart_<%= i %>" style="width:1000px; height:300px;">
+
+    </div>
+
+<% end %>

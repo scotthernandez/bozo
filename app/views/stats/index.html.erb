@@ -1,31 +1,12 @@
 
-<script type="text/javascript" >
-  $(function() {
-     new Highcharts.Chart({
-         chart: {
-             renderTo: "chart_chart"
-         },
-         title: {
-             text:"Incoming by day"
-         },
-         xAxis: {
-            categories: [<%= @data_y.map { |x| "'#{x}'" }.join(',') %>]
-         },
-         yAxis: {
-             title: {
-                 text: "incoming"
-             }
-         },
-         series: [{
-             name: "Articles (in <%= l(@current_date, :format => :long_mon) %>)",
-             data: <%= @data_x %>
+<h1>
+  Reports:
+</h1>
 
-         }]
-     });
-  });
-
-</script>
-
-<div id="chart_chart" style="width:560px; height:300px;">
-
+<div>
+  <ul>
+    <li><%= link_to 'Incoming by day', incoming_by_day_stats_path() %></li>
+    <li><%= link_to 'Closed by day', closed_by_day_stats_path() %></li>
+    <li><%= link_to 'Incoming by hour', incoming_by_hour_stats_path() %></li>
+  </ul>
 </div>
