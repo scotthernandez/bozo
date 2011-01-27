@@ -93,7 +93,7 @@ class StatsController < ApplicationController
 
     @day_stats = []
 
-    articles_group = articles.group_by { |x| x.link_time.to_date}
+    articles_group = articles.group_by { |x| x.link_time.to_date }
     articles_group.keys.sort.each do |k|
       values = articles_group[k]
       time_map = {}
@@ -105,6 +105,25 @@ class StatsController < ApplicationController
       
       @day_stats << {:label => l(k.to_date, :format => :wday_and_short_date), :stats => time_map}      
     end
+    
+    # Add weekly average
+    @avg_stats = { :label => "Weekly Average" }
+    time_map = {}
+
+    # collect average for each hour
+    0.upto(23).each do |i|
+      incoming_total = 0.0
+      
+      # go over each day (same time)
+      @day_stats.each do |stats_map| 
+        incoming_total += stats_map[:stats][i]
+      end
+      
+      time_map[i] = (incoming_total / @day_stats.size)  
+    end
+    
+    @avg_stats[:stats] = time_map
+    @day_stats << @avg_stats
   end
   
   
