@@ -1,7 +1,7 @@
 <% article ||= Article.new %>
 <% row_class ||= "odd" %>
 
-<tr class="<%= row_class -%>" align="left">
+<tr id="article-<%= article.id -%>" class="<%= row_class -%>" align="left">
 
   <td width="13%"><%= l(article.link_time, :format => :short_datetime) %></td>
   <td width="12%"><%= article.author %></td>

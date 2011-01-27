@@ -14,8 +14,8 @@ class ArticlesController < ApplicationController
 
     if params[:category_id] != "-1"
       category = Category.find(params[:category_id])
-      @article.category_id = category.id
-      @article.category_name = category.name
+      @article.category_id = category && category.id
+      @article.category_name = category && category.name
     end
     
     if params[:user_id] != "-1"
