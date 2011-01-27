@@ -1,28 +1,28 @@
-
-<script type="text/javascript" >
-  $(function() {
-     new Highcharts.Chart({
-         chart: {
-             renderTo: "chart_chart"
-         },
-         title: {
-             text:"Closed by day - <%= l(@current_date, :format => :long_mon) %>"
-         },
-         xAxis: {
-            categories: [<%= @data_x.map { |x| "'#{x}'" }.join(',') %>]
-         },
-         yAxis: {
-             title: {
-                 text: "closed"
-             }
-         },
-         series: [{
-             name: "Articles",
-             data: <%= @data_y %>
-
-         }]
-     });
-  });
+<script type="text/javascript">
+    $(function() {
+        new Highcharts.Chart({
+            chart: {
+                renderTo: "chart_chart"
+            },
+            title: {
+                text:"Closed by day - <%= l(@current_date, :format => :long_mon) %>"
+            },
+            xAxis: {
+                categories: [<%= @data_x.map { |x| "'#{x}'" }.join(',') %>]
+            },
+            yAxis: {
+                title: {
+                    text: "closed"
+                }
+            },
+            series: [
+                {
+                    name: "Articles",
+                    data: <%= @data_y %>
+                }
+            ]
+        });
+    });
 
 </script>
 

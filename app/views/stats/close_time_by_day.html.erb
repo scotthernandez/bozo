@@ -5,14 +5,14 @@
                 renderTo: "chart_chart"
             },
             title: {
-                text:"Incoming by day - <%= l(@current_date, :format => :long_mon) %>"
+                text:"Avg closing time for issues opened on the given date - <%= l(@current_date, :format => :long_mon) %>"
             },
             xAxis: {
                 categories: [<%= @data_x.map { |x| "'#{x}'" }.join(',') %>]
             },
             yAxis: {
                 title: {
-                    text: "incoming"
+                    text: "Hours"
                 }
             },
             series: [

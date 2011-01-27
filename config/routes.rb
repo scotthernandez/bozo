@@ -12,6 +12,7 @@ Bozo::Application.routes.draw do
       get :incoming_by_day
       get :closed_by_day
       get :incoming_by_hour
+      get :close_time_by_day
     end
   end
 

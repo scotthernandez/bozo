@@ -4,9 +4,20 @@
 </h1>
 
 <div>
+  <div>Current Week:</div>
+  <ul>
+    <li><%= link_to 'Incoming by hour', incoming_by_hour_stats_path() %></li>
+  </ul>
+</div>
+
+<br/>
+
+<div>
+  <div>Current Month:</div>
   <ul>
     <li><%= link_to 'Incoming by day', incoming_by_day_stats_path() %></li>
     <li><%= link_to 'Closed by day', closed_by_day_stats_path() %></li>
-    <li><%= link_to 'Incoming by hour', incoming_by_hour_stats_path() %></li>
+    
+    <li><%= link_to 'Avg Closing time by day', close_time_by_day_stats_path() %></li>
   </ul>
 </div>
