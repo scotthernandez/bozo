@@ -8,11 +8,11 @@
 -->
 
 
-<%= render :partial => "/dashboard/article_update_form" %>        
+<%= render :partial => "/dashboard/article_update_form" %>
 
 
+<h3>Articles without a reply, not closed</h3>
 <% if !@articles_no_reply.empty? %>
-  <h3>Articles without a reply, not closed</h3>
   <table>
     <thead>
       <tr align="left">
@@ -36,7 +36,7 @@
   <%= will_paginate @articles_no_reply %>
 
 <% else %>
-  <h3> No articles without a reply that are not closed </h3>
+  <div style="color: #8c8c8c; font-style: italic;">empty!</div>
 <% end %>
 
 <h3>Open issues</h3>
