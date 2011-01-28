@@ -25,6 +25,7 @@ class User
   key :last_sign_in_at,       Time
   key :current_sign_in_ip,    String
   key :last_sign_in_ip,       String
+  key :email_alert,           Boolean
   key :sms,                   Boolean
   key :weekend,               Boolean
   key :estime,                Time

@@ -1,6 +1,6 @@
 Bozo::Application.routes.draw do
-  devise_for :users
-
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  
   root :to => "dashboard#index"
   
   resources :users
@@ -20,6 +20,6 @@ Bozo::Application.routes.draw do
     collection do
       get :byuser
     end
-  end         
+  end     
 
 end # of routes

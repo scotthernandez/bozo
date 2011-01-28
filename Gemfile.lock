@@ -57,10 +57,6 @@ GEM
       warden (~> 1.0.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    formtastic (1.1.0)
-      actionpack (>= 2.3.0)
-      activesupport (>= 2.3.0)
-      i18n (>= 0.4.0)
     gchartrb (0.8)
     i18n (0.5.0)
     mail (2.2.14)
@@ -116,7 +112,6 @@ DEPENDENCIES
   chronic
   devise
   devise-mongo_mapper!
-  formtastic (~> 1.1.0)
   gchartrb
   mongo
   mongo_ext

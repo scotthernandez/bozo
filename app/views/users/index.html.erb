@@ -20,7 +20,7 @@
   <tr align="left">
     <td><%= user.nick %></td>
     <td><%= user.email %></td>
-    <td><%= user.email %></td>
+    <td><%= user.email_alert %></td>
     <td><%= user.estime %></td>
     <td><%= user.eetime %></td>
     <td><%= user.sms %></td>
@@ -29,7 +29,10 @@
     <td><%= user.weekend %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
+    
+    
+    
   </tr>
 <% end %>
 </table>

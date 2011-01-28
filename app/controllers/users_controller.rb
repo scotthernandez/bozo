@@ -36,12 +36,6 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   #
   def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
   
@@ -58,29 +52,6 @@ class UsersController < ApplicationController
   # POST /users.xml
   #
   def create
-    logger.info ">>>>> new"
-
-    @user = User.new
-
-    respond_to do |format|
-      @user.email = params[:user][:email]
-      @user.nick = params[:user][:nick]
-      @user.weekend = params[:user][:weekend]
-      @user.sms = params[:user][:sms]
-      @user.email = params[:user][:email]
-      @user.estime = params[:user][:estime]
-      @user.eetime = params[:user][:eetime]
-      @user.sstime = params[:user][:sstime]
-      @user.setime = params[:user][:setime]
-
-      if @user.save
-        format.html { redirect_to(@user, :notice => "User was successfully created.") }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
   
@@ -92,15 +63,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      @user.email = params[:user][:email]
-      @user.nick = params[:user][:nick]
-      @user.weekend = params[:user][:weekend]
-      @user.sms = params[:user][:sms]
-      @user.email = params[:user][:email]
-      @user.estime = params[:user][:estime]
-      @user.eetime = params[:user][:eetime]
-      @user.sstime = params[:user][:sstime]
-      @user.setime = params[:user][:setime]
+      @user.email       = params[:user][:email]
+      @user.nick        = params[:user][:nick]
+      @user.email_alert = params[:user][:email_alert]
+      @user.estime      = params[:user][:estime]
+      @user.eetime      = params[:user][:eetime]
+      @user.sms         = params[:user][:sms]
+      @user.sms_address = params[:user][:sms_address]
+      @user.sstime      = params[:user][:sstime]
+      @user.setime      = params[:user][:setime]
+      @user.weekend     = params[:user][:weekend]
 
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => "User was successfully updated.") }

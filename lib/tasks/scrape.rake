@@ -102,6 +102,7 @@ namespace :scrape do
         g.authors    = linkAuthors[i]
         g.user       = User.find_by_id(1)
         g.status     = s
+        g.status_name= s.name
         g.created_at = Time.now
 
         g.save

@@ -774,10 +774,32 @@ table {
     border-collapse: collapse;
     text-align: center;
     width: 100%;
-
 }
 
+
 table tr.even { background-color: #eefafa; }
+
+th { font-weight: bold; } /* distinguishing table headers from data cells */
+table.compact-b,
+table.compact-b th,
+table.compact-b td,
+table.simple-b,
+table.simple-b th,
+table.simple-b td { text-align: left; border: #d2d2d4 1px solid; width: auto; }
+
+table.simple-b th,
+table.simple-b td { padding:5px 10px }
+
+table.simple-nb { text-align: left; width: auto; }
+
+table.simple-nb th, 
+table.simple-nb td { padding:3px 12px 3px 0 }
+
+table.compact-b th,
+table.compact-b td { padding-left:4px; padding-right:4px; }
+
+.full-width table { width: 100%; }
+
 
 #support-table td {
     padding: 1em;
@@ -1388,3 +1410,7 @@ div.box-options a.button:hover {
 	text-decoration: none;
 	text-shadow: #328526 -1px -1px 0;
 }
+
+.notice { color: green }
+.error { color: red }
+.warning { color: orange }
