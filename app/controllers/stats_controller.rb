@@ -123,11 +123,11 @@ class StatsController < ApplicationController
     closed_status   = Status.find_by_name('Closed')
 
     map_function    = %( function() {
-        var date = this.time_closed;
+        var date = this.link_time;
         var y = date.getFullYear();
         var m = date.getMonth()+1;
         var d = date.getDate(); 
-        emit( new Date(y + "/" + m + "/" + d), (date - this.link_time) / 3600000); 
+        emit( new Date(y + "/" + m + "/" + d), (this.time_closed - date) / 3600000); 
     })
 
     reduce_function = %( function(key, values) { 
@@ -139,18 +139,13 @@ class StatsController < ApplicationController
     })
 
     @current_date   = Time.zone.today
-    start_of_month  = @current_date.beginning_of_month.beginning_of_day.utc
+      start_of_month  = @current_date.advance(:months => -11).beginning_of_month.beginning_of_day.utc
     end_of_month    = @current_date.end_of_month.end_of_day.utc
     x               = Article.collection.map_reduce(map_function, reduce_function,
                                                     {:query => {:link_time => {"$gte" => start_of_month, "$lte" => end_of_month},
                                                                 :status_id  => closed_status.id}}).find().to_a
 
-    @data_x = []
-    @data_y = []
-    x.each do |xs|
-      @data_x << xs["_id"].day
-      @data_y << xs["value"].to_i
-    end
+    set_monthly_stats(x)
   end
   
   

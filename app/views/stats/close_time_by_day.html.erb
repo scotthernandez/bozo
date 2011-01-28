@@ -1,31 +1,47 @@
-<script type="text/javascript">
-    $(function() {
-        new Highcharts.Chart({
-            chart: {
-                renderTo: "chart_chart"
-            },
-            title: {
-                text:"Avg closing time for issues opened on the given date - <%= l(@current_date, :format => :long_mon) %>"
-            },
-            xAxis: {
-                categories: [<%= @data_x.map { |x| "'#{x}'" }.join(',') %>]
-            },
-            yAxis: {
-                title: {
-                    text: "Hours"
-                }
-            },
-            series: [
-                {
-                    name: "Articles",
-                    data: <%= @data_y %>
-                }
-            ]
-        });
-    });
+<% @monthly_stats.keys.sort.reverse.each_with_index do |key, index|  %>
+  
+  <%
+      monthly_stat = @monthly_stats[key]
+      if monthly_stat.nil?
+        next
+      end
+     
+      label = monthly_stat[:label]
+      stats = monthly_stat[:stats]
+      data_x = stats[0] 
+      data_y = stats[1]
+  %>
 
-</script>
+  <script type="text/javascript">
+      $(function() {
+          new Highcharts.Chart({
+              chart: {
+                  renderTo: "chart_<%= index %>"
+              },
+              title: {
+                  text:"Avg closing time for issues opened on the given date - <%= label %>"
+              },
+              xAxis: {
+                  categories: [<%= data_x.map { |x| "'#{x}'" }.join(',') %>]
+              },
+              yAxis: {
+                  title: {
+                      text: "Hours"
+                  }
+              },
+              series: [
+                  {
+                      name: "Articles",
+                      data: <%= data_y %>
+                  }
+              ]
+          });
+      });
+  
+  </script>
+  
+  <div id="chart_<%= index %>" style="width:560px; height:300px;">
+  
+  </div>
 
-<div id="chart_chart" style="width:560px; height:300px;">
-
-</div>
+<% end %>
