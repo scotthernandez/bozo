@@ -6,13 +6,11 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Category.create(:name => '---')
 Category.create(:name => 'Bug')
 Category.create(:name => 'Doc')
 Category.create(:name => 'Design')
 Category.create(:name => 'Sales')
 
-Status.create(:name => '---')
 Status.create(:name => 'Open')
 Status.create(:name => 'Closed')
 Status.create(:name => 'Thanks')
