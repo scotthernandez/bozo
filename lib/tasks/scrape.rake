@@ -21,13 +21,6 @@ namespace :scrape do
     end
 
 
-    def email(thread, subject)
-    end
-
-    def sms(thread, subject)
-    end
-
-
     # user, time, author and replies 
     linkUser    = Hash.new
     linkTime    = Hash.new
@@ -81,14 +74,15 @@ namespace :scrape do
           puts e.backtrace.inspect
         end
 
-        puts "Calling Alertmailer"
-
-        begin
-          AlertMailer.new_thread(res.thread, res.subject).deliver
-        rescue Exception => e
-          puts "Alert : "
-          puts e.message
-        end
+#        puts "Calling Alertmailer"
+#
+#        begin
+#          AlertMailer.email_new_thread(res.thread, res.subject).deliver
+#          AlertMailer.sms_new_thread(res.thread, res.subject).deliver
+#        rescue Exception => e
+#          puts "Alert : "
+#          puts e.message
+#        end
 
       else
         s            = Status.find_by_name("Open")
@@ -110,7 +104,8 @@ namespace :scrape do
         puts "Calling Alertmailer"
 
         begin
-          AlertMailer.new_thread(g.thread, g.subject).deliver
+          AlertMailer.email_new_thread(g.thread, g.subject).deliver
+          AlertMailer.sms_new_thread(g.thread, g.subject).deliver
         rescue Exception => e
           puts "Alert : "
           puts e.message

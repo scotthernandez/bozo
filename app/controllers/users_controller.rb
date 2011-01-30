@@ -68,7 +68,7 @@ class UsersController < ApplicationController
       @user.email_alert = params[:user][:email_alert]
       @user.estime      = params[:user][:estime]
       @user.eetime      = params[:user][:eetime]
-      @user.sms         = params[:user][:sms]
+      @user.sms_alert   = params[:user][:sms_alert]
       @user.sms_address = params[:user][:sms_address]
       @user.sstime      = params[:user][:sstime]
       @user.setime      = params[:user][:setime]

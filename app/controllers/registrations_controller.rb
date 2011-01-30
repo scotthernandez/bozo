@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     @user.nick = params[:user][:nick]
     @user.email_alert = false
-    @user.sms = false
+    @user.sms_alert = false
     @user.weekend = false
     @user.save
   end

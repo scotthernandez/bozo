@@ -11,7 +11,7 @@
   <tr><td>end</td>             <td><%= @user.eetime && l(@user.eetime, :format => :default) %></td></tr>
   <tr><td colspan="2"><hr style="margin:5px 0"/></td></tr>
   
-  <tr><td>SMS alerts</td>      <td><%= @user.sms %></td></tr>
+  <tr><td>SMS alerts</td>      <td><%= @user.sms_alert %></td></tr>
   <tr><td>SMS address</td>      <td><%= @user.sms_address %></td></tr>
   <tr><td>start</td>           <td><%= @user.sstime && l(@user.sstime, :format => :default) %></td></tr>
   <tr><td>end</td>             <td><%= @user.setime && l(@user.setime, :format => :default) %></td></tr>

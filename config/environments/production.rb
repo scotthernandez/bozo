@@ -28,10 +28,10 @@ Bozo::Application.configure do
         :user_name  => "alerts",
         :password   => "topsecret",
         :authentication => "plain",
-        :enabla_starttls_auto => true}
+        :enable_starttls_auto => true}
 
 
-  config.action_mailer.default_url_options = { :host => '174.129.74.100:3000' }
+  config.action_mailer.default_url_options = { :host => '174.129.158.168:3000' }
   # Enable threaded mode
   # config.threadsafe!
 

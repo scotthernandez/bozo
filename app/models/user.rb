@@ -26,14 +26,14 @@ class User
   key :current_sign_in_ip,    String
   key :last_sign_in_ip,       String
   key :email_alert,           Boolean
-  key :sms,                   Boolean
+  key :sms_alert,             Boolean
   key :weekend,               Boolean
   key :estime,                Time
   key :eetime,                Time
   key :sstime,                Time
   key :setime,                Time
   key :nick,                  String
-  key :sms_address
+  key :sms_address,           String
   timestamps!
   
   # Validations
