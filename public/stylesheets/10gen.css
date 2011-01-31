@@ -1414,3 +1414,5 @@ div.box-options a.button:hover {
 .notice { color: green }
 .error { color: red }
 .warning { color: orange }
+
+.hint { color: #acacac; font-size: 90% }

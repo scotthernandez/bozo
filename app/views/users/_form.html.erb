@@ -30,11 +30,21 @@
       </tr>
       <tr>
         <td><%= f.label 'Start time' %></td>
-        <td><%= text_field_tag "user[estime]", @user.estime && l(@user.estime, :format => :default), :size => 8 %></td>
+        <td>
+          <%= text_field_tag "user[estime]", @user.estime && l(@user.estime, :format => :default), :size => 8 %>
+          <span class="hint">(e.g. 9:00 am)</span>
+        </td>
       </tr>
       <tr>
         <td><%= f.label 'End time' %></td>
-        <td><%= text_field_tag "user[eetime]", @user.eetime && l(@user.eetime, :format => :default), :size => 8 %></td>
+        <td>
+          <%= text_field_tag "user[eetime]", @user.eetime && l(@user.eetime, :format => :default), :size => 8 %>
+          <span class="hint">(e.g. 6:00 pm)</span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="hint">(leaving time fields blank will select full day)</span></td>
       </tr>
       <tr>
         <td colspan="2"><hr style="margin:5px 0"/></td>
@@ -44,16 +54,29 @@
         <td><%= f.check_box :sms_alert %></td>
       </tr>
       <tr>
-        <td><%= f.label 'Sms address' %></td>
-        <td><%= f.text_field :sms_address %></td>        
+        <td><%= f.label 'SMS address' %></td>
+        <td>
+          <%= f.text_field :sms_address %>
+          <span class="hint">(email address linked to your phone by your carrier eg. 6501234567@txt.att.net)</span>
+        </td>        
       </tr>
       <tr>
         <td><%= f.label 'Start time' %></td>
-        <td><%= text_field_tag "user[sstime]", @user.sstime && l(@user.sstime, :format => :default), :size => 8 %></td>
+        <td>
+          <%= text_field_tag "user[sstime]", @user.sstime && l(@user.sstime, :format => :default), :size => 8 %>
+          <span class="hint">(e.g. 9:00 am)</span>
+        </td>
       </tr>
       <tr>
         <td><%= f.label 'End time' %></td>
-        <td><%= text_field_tag "user[setime]", @user.setime && l(@user.setime, :format => :default), :size => 8 %></td>
+        <td>
+          <%= text_field_tag "user[setime]", @user.setime && l(@user.setime, :format => :default), :size => 8 %>
+          <span class="hint">(e.g. 6:00 pm)</span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="hint">(leaving time fields blank will select full day)</span></td>
       </tr>
       <tr>
         <td colspan="2"><hr style="margin:5px 0"/></td>
