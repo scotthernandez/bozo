@@ -1,4 +1,6 @@
 class AlertMailer < ActionMailer::Base
+  include ActionView::Helpers::TextHelper
+  
   default :from => "notifications@10gen.com"
 
   
@@ -32,7 +34,7 @@ class AlertMailer < ActionMailer::Base
   def sms_new_thread(thread, subject)
     @thread = thread  # used in alert_mailer view code
     
-    subject = subject
+    subject = truncate(subject, :length => 80)
     users = User.all
 
     # now process SMS Alert requests

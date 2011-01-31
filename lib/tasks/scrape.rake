@@ -104,8 +104,9 @@ namespace :scrape do
         puts "Calling Alertmailer"
 
         begin
-          AlertMailer.email_new_thread(g.thread, g.subject).deliver
-          AlertMailer.sms_new_thread(g.thread, g.subject).deliver
+          thread = "http://groups.google.com" + (g.url || "")
+          AlertMailer.email_new_thread(thread, g.subject).deliver
+          AlertMailer.sms_new_thread(thread, g.subject).deliver
         rescue Exception => e
           puts "Alert : "
           puts e.message
