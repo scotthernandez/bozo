@@ -1,14 +1,6 @@
-<!--
-<h3>All Open Issues. Search by user :
-<%= form_tag(byuser_dashboard_path) do %>
-  <%= select("user", "user_id", options_for_select(User.all.collect { |p| [p.email, p.id] }, 1)) %>
-  <%= submit_tag("go") %>
+<% if user_signed_in? %>
+  <%= render :partial => "/dashboard/article_update_form" %>
 <% end %>
-</h3>
--->
-
-
-<%= render :partial => "/dashboard/article_update_form" %>
 
 
 <h3>Articles without a reply, not closed</h3>

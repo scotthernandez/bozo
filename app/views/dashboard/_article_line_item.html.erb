@@ -8,18 +8,31 @@
   <td width="40%"><%= link_to_if (not article.url.nil?), article.subject, "http://groups.google.com" + (article.url || "")%></td>
   <td width="5%"><%= article.replies %></td>
   <td width="10%">
-    <%= select("article", "category_id", options_for_select(@categories.collect { |p| [p.name, p.id] }, article.category_id),
-               {:prompt => '---'}, 
-               {:onchange => "submitUpdateArticleForm('#{article.id}', this.options[this.selectedIndex].value, -1, -1)"}) %>
+    <% if user_signed_in? %>
+      <%= select("article", "category_id", options_for_select(@categories.collect { |p| [p.name, p.id] }, article.category_id),
+                 {:prompt => '---'}, 
+                 {:onchange => "submitUpdateArticleForm('#{article.id}', this.options[this.selectedIndex].value, -1, -1)"}) %>
+    <% else %>
+      <%= article.category_name || "---" %>
+    <% end  %>
+    
   </td>
   <td width="10%">
-    <%= select("article", "user_id", options_for_select(@users.collect { |p| [p.nick, p.id] }, article.user_id),
-               {:prompt =>'---'},
-               {:onchange => "submitUpdateArticleForm('#{article.id}', -1, this.options[this.selectedIndex].value, -1)"}) %>
+    <% if user_signed_in? %>
+      <%= select("article", "user_id", options_for_select(@users.collect { |p| [p.nick, p.id] }, article.user_id),
+                 {:prompt =>'---'},
+                 {:onchange => "submitUpdateArticleForm('#{article.id}', -1, this.options[this.selectedIndex].value, -1)"}) %>
+    <% else %>
+      <%= article.user_nickname || "---" %>
+    <% end  %>
   </td>
   <td width="10%">
-    <%= select("article", "status_id", options_for_select(@statuses.collect { |p| [p.name, p.id] }, article.status_id),
-               {:prompt => '---'}, 
-               {:onchange => "submitUpdateArticleForm('#{article.id}', -1, -1, this.options[this.selectedIndex].value)"}) %>
+    <% if user_signed_in? %>
+      <%= select("article", "status_id", options_for_select(@statuses.collect { |p| [p.name, p.id] }, article.status_id),
+                 {:prompt => '---'}, 
+                 {:onchange => "submitUpdateArticleForm('#{article.id}', -1, -1, this.options[this.selectedIndex].value)"}) %>
+    <% else %>
+      <%= article.status_name || "---" %>
+    <% end  %>
   </td>
 </tr>

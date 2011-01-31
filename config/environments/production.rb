@@ -26,7 +26,7 @@ Bozo::Application.configure do
         :port       => 587,
         :domain     => '10gen.com',
         :user_name  => "alerts@10gen.com",
-        :password   => "",
+        :password   => "1topsecret",
         :authentication => "plain",
         :enable_starttls_auto => true}
 

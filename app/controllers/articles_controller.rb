@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   respond_to :js
 
+  before_filter :authenticate_user!
   
   #
   #

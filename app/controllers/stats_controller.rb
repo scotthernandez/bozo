@@ -2,6 +2,8 @@
 #
 class StatsController < ApplicationController
 
+  before_filter :authenticate_user!
+  
   #
   #
   #
@@ -32,8 +34,11 @@ class StatsController < ApplicationController
     @current_date   = Time.zone.today
     start_of_month  = @current_date.advance(:months => -11).beginning_of_month.beginning_of_day.utc
     end_of_month    = @current_date.end_of_month.end_of_day.utc
-    x               = Article.collection.map_reduce(map_function, reduce_function,
-                                                    {:query => {:link_time => {"$gte" => start_of_month, "$lte" => end_of_month}}}).find().to_a
+    
+    MongoMapper.database['mr_incoming_by_day'].drop() # remove temp collection for map_reduce
+    x = Article.collection.map_reduce(map_function, reduce_function,
+                                      { :out => 'mr_incoming_by_day',
+                                        :query => {:link_time => {"$gte" => start_of_month, "$lte" => end_of_month}}}).find().to_a
     
     set_monthly_stats(x)
   end
@@ -64,9 +69,12 @@ class StatsController < ApplicationController
     @current_date   = Time.zone.today
     start_of_month  = @current_date.advance(:months => -11).beginning_of_month.beginning_of_day.utc
     end_of_month    = @current_date.end_of_month.end_of_day.utc
-    x               = Article.collection.map_reduce(map_function, reduce_function,
-                                                    {:query => {:link_time => {"$gte" => start_of_month, "$lte" => end_of_month},
-                                                                :status_id  => closed_status.id}}).find().to_a
+    
+    MongoMapper.database['mr_closed_by_day'].drop() # remove temp collection for map_reduce
+    x = Article.collection.map_reduce(map_function, reduce_function,
+                                      { :out => 'mr_closed_by_day',
+                                        :query => { :link_time => {"$gte" => start_of_month, "$lte" => end_of_month},
+                                                    :status_id  => closed_status.id}}).find().to_a
 
     set_monthly_stats(x)
   end
@@ -141,9 +149,12 @@ class StatsController < ApplicationController
     @current_date   = Time.zone.today
       start_of_month  = @current_date.advance(:months => -11).beginning_of_month.beginning_of_day.utc
     end_of_month    = @current_date.end_of_month.end_of_day.utc
-    x               = Article.collection.map_reduce(map_function, reduce_function,
-                                                    {:query => {:link_time => {"$gte" => start_of_month, "$lte" => end_of_month},
-                                                                :status_id  => closed_status.id}}).find().to_a
+    
+    MongoMapper.database['mr_close_time_by_day'].drop() # remove temp collection for map_reduce
+    x = Article.collection.map_reduce(map_function, reduce_function,
+                                      { :out => 'mr_close_time_by_day',
+                                        :query => { :link_time => {"$gte" => start_of_month, "$lte" => end_of_month},
+                                                    :status_id  => closed_status.id}}).find().to_a
 
     set_monthly_stats(x)
   end

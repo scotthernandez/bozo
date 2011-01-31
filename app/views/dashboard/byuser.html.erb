@@ -1,38 +1,11 @@
-<% if !user_signed_in? then %>
-  <h3>Not signed in, <%= link_to "sign in first ", new_user_session_path %></h3>
-<% else %>
-
-  <h3>User : <%= @user.email %></h3>
+<h3>User : <%= @user.email %></h3>
 
 
-  <%= render :partial => "/dashboard/article_update_form" %>
+<%= render :partial => "/dashboard/article_update_form" %>
 
-  
-  <h3>Articles without a reply, not closed</h3>
-  <% if !@articles_no_reply.empty? %>
-    <table>
-      <thead>
-        <tr align="left">
-          <th>date</th>
-          <th>Author</th>
-          <th>Subject</th>
-          <th>#r</th>
-          <th>type</th>
-          <th>assigned</th>
-          <th>status</th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <% @articles_no_reply.each_with_index do |a, i| %>
-        <%= render :partial => "/dashboard/article_line_item", :locals => {:article => a, :row_class => (i%2 == 0 ? "even" : "odd")} %>
-      <% end %>
-    </table>
-  <% else %>
-    <div style="color: #8c8c8c; font-style: italic;">empty!</div>    
-  <% end %>
-
-  <h3>Open issues</h3>
+<h3>Articles without a reply, not closed</h3>
+<% if !@articles_no_reply.empty? %>
   <table>
     <thead>
       <tr align="left">
@@ -46,26 +19,47 @@
         <th></th>
       </tr>
     </thead>
-    <% @articles.each_with_index do |a, i| %>
+
+    <% @articles_no_reply.each_with_index do |a, i| %>
       <%= render :partial => "/dashboard/article_line_item", :locals => {:article => a, :row_class => (i%2 == 0 ? "even" : "odd")} %>
     <% end %>
   </table>
-
-
-  <h3>Closed issues</h3>
-  <table>
-    <thead>
-      <tr align="left">
-        <th>date</th>
-        <th>Author</th>
-        <th>Subject</th>
-        <th>#r</th>
-        <th>type</th>
-      </tr>
-    </thead>
-    <% @closed_articles.each_with_index do |a, i| %>
-      <%= render :partial => "/dashboard/article_line_item", :locals => {:article => a, :row_class => (i%2 == 0 ? "even" : "odd")} %>
-    <% end %>
-  </table>
-
+<% else %>
+  <div style="color: #8c8c8c; font-style: italic;">empty!</div>    
 <% end %>
+
+<h3>Open issues</h3>
+<table>
+  <thead>
+    <tr align="left">
+      <th>date</th>
+      <th>Author</th>
+      <th>Subject</th>
+      <th>#r</th>
+      <th>type</th>
+      <th>assigned</th>
+      <th>status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @articles.each_with_index do |a, i| %>
+    <%= render :partial => "/dashboard/article_line_item", :locals => {:article => a, :row_class => (i%2 == 0 ? "even" : "odd")} %>
+  <% end %>
+</table>
+
+
+<h3>Closed issues</h3>
+<table>
+  <thead>
+    <tr align="left">
+      <th>date</th>
+      <th>Author</th>
+      <th>Subject</th>
+      <th>#r</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <% @closed_articles.each_with_index do |a, i| %>
+    <%= render :partial => "/dashboard/article_line_item", :locals => {:article => a, :row_class => (i%2 == 0 ? "even" : "odd")} %>
+  <% end %>
+</table>

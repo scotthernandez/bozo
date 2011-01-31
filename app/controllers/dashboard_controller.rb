@@ -3,6 +3,8 @@
 #
 class DashboardController < ApplicationController
   
+   before_filter :authenticate_user!, :except => :index
+  
   #
   #
   #
@@ -27,23 +29,21 @@ class DashboardController < ApplicationController
   #
   #
   def byuser
-    if user_signed_in? then
-      user_id = current_user.id
-      @user = User.find_by_id(user_id)
-      closed_status = Status.find_by_name("Closed")      
+    user_id = current_user.id
+    @user = User.find_by_id(user_id)
+    closed_status = Status.find_by_name("Closed")      
 
-      @articles_no_reply = Article.where({:replies => 0, :user_id => user_id}).sort(:link_time.desc, :id.desc).all
-      @articles_no_reply.delete_if { |a| a.status_id == closed_status.id }
+    @articles_no_reply = Article.where({:replies => 0, :user_id => user_id}).sort(:link_time.desc, :id.desc).all
+    @articles_no_reply.delete_if { |a| a.status_id == closed_status.id }
 
-      @articles = Article.where({:replies.ne => 0, :user_id => user_id}).sort(:link_time.desc).all
-      @articles.delete_if { |a| a.status_id == closed_status.id }
+    @articles = Article.where({:replies.ne => 0, :user_id => user_id}).sort(:link_time.desc).all
+    @articles.delete_if { |a| a.status_id == closed_status.id }
 
-      @closed_articles = Article.where(:user_id => user_id, :status_id => closed_status.id).sort(:link_time.desc, :id.desc).all
+    @closed_articles = Article.where(:user_id => user_id, :status_id => closed_status.id).sort(:link_time.desc, :id.desc).all
 
-      @users = User.all(:order => "id")
-      @categories = Category.all
-      @statuses = Status.all
-    end
+    @users = User.all(:order => "id")
+    @categories = Category.all
+    @statuses = Status.all
   end
 
 end # of class
