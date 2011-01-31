@@ -25,8 +25,8 @@ Bozo::Application.configure do
         :address    => "smtp.gmail.com",
         :port       => 587,
         :domain     => '10gen.com',
-        :user_name  => "alerts",
-        :password   => "topsecret",
+        :user_name  => "alerts@10gen.com",
+        :password   => "",
         :authentication => "plain",
         :enable_starttls_auto => true}
 
