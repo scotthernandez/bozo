@@ -57,10 +57,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email_new_thread_assigned.html.erb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="email_new_thread_assigned.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="-6.206897">
+            <state line="11" column="98" selection-start="358" selection-end="358" vertical-scroll-proportion="0.2669903">
               <folding />
             </state>
           </provider>
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email_new_thread_assigned.text.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="email_new_thread_assigned.text.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="87" selection-end="87" vertical-scroll-proportion="0.07281554">
+            <state line="4" column="0" selection-start="133" selection-end="133" vertical-scroll-proportion="-2.0689654">
               <folding />
             </state>
           </provider>
@@ -168,8 +168,8 @@
         <option value="$PROJECT_DIR$/lib/tasks/scrape.rake" />
         <option value="$PROJECT_DIR$/app/controllers/articles_controller.rb" />
         <option value="$PROJECT_DIR$/app/mailers/alert_mailer.rb" />
-        <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb" />
         <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb" />
+        <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb" />
       </list>
     </option>
   </component>
@@ -704,16 +704,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="-6.206897">
+        <state line="4" column="0" selection-start="133" selection-end="133" vertical-scroll-proportion="-2.0689654">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="87" selection-end="87" vertical-scroll-proportion="0.07281554">
+        <state line="11" column="98" selection-start="358" selection-end="358" vertical-scroll-proportion="0.2669903">
           <folding />
         </state>
       </provider>
