@@ -34,7 +34,6 @@ class AlertMailer < ActionMailer::Base
 
     @article = article
     if not user.email.empty?
-      logger.info "\n\n[start] sending alert email to #{email_addresses}"
       mail(:to => user.email, :subject => "new thread assigned")
       logger.info "[end] emails sent!"
     else
