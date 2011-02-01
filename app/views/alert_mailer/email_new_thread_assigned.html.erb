@@ -6,8 +6,7 @@
   <body>
     <h3>New Thread Assigned to you</h3>
     <p>
-      <% @thread = "http://groups.google.com" + (@article.url || "") %>
-      <%= link_to @thread, @thread %>
+      <%= link_to @article.subject, @article.url %>
     </p>
   </body>
 </html>
