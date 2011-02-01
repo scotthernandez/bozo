@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/articles_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/articles_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/alert_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/alert_mailer.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb" afterPath="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb" afterPath="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb" />
     </list>
     <ignored path="bozo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,7 +41,7 @@
       <file leaf-file-name="articles_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/articles_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="45" selection-start="524" selection-end="524" vertical-scroll-proportion="-7.862069">
+            <state line="24" column="45" selection-start="524" selection-end="524" vertical-scroll-proportion="-6.3103447">
               <folding />
             </state>
           </provider>
@@ -60,7 +59,7 @@
       <file leaf-file-name="email_new_thread_assigned.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="98" selection-start="358" selection-end="358" vertical-scroll-proportion="0.2669903">
+            <state line="9" column="0" selection-start="133" selection-end="273" vertical-scroll-proportion="0.2184466">
               <folding />
             </state>
           </provider>
@@ -96,7 +95,7 @@
       <file leaf-file-name="scrape.rake" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tasks/scrape.rake">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="61" selection-start="3130" selection-end="3181" vertical-scroll-proportion="-12.0">
+            <state line="106" column="61" selection-start="3130" selection-end="3181" vertical-scroll-proportion="-16.655172">
               <folding />
             </state>
           </provider>
@@ -168,8 +167,8 @@
         <option value="$PROJECT_DIR$/lib/tasks/scrape.rake" />
         <option value="$PROJECT_DIR$/app/controllers/articles_controller.rb" />
         <option value="$PROJECT_DIR$/app/mailers/alert_mailer.rb" />
-        <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb" />
         <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.text.erb" />
       </list>
     </option>
   </component>
@@ -676,6 +675,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/mailers/alert_mailer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="963" selection-end="963" vertical-scroll-proportion="-15.103448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread.text.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="29" vertical-scroll-proportion="-0.0">
@@ -683,23 +689,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/scrape.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="61" selection-start="3130" selection-end="3181" vertical-scroll-proportion="-12.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/articles_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="45" selection-start="524" selection-end="524" vertical-scroll-proportion="-7.862069">
+        <state line="24" column="45" selection-start="524" selection-end="524" vertical-scroll-proportion="-6.3103447">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/mailers/alert_mailer.rb">
+    <entry file="file://$PROJECT_DIR$/lib/tasks/scrape.rake">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="963" selection-end="963" vertical-scroll-proportion="-15.103448">
+        <state line="106" column="61" selection-start="3130" selection-end="3181" vertical-scroll-proportion="-16.655172">
           <folding />
         </state>
       </provider>
@@ -713,7 +712,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/alert_mailer/email_new_thread_assigned.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="98" selection-start="358" selection-end="358" vertical-scroll-proportion="0.2669903">
+        <state line="9" column="0" selection-start="133" selection-end="273" vertical-scroll-proportion="0.2184466">
           <folding />
         </state>
       </provider>
