@@ -27,7 +27,20 @@ class AlertMailer < ActionMailer::Base
     end
   end
 
-  
+  #
+  #
+  #
+  def email_new_thread_assigned(user, article)
+
+    @article = article
+    if not user.email.empty?
+      mail(:to => user.email, :subject => "new thread assigned")
+      logger.info "[end] emails sent!"
+    else
+      logger.info "No users found to send message to - none qualifies"
+    end
+  end
+
   #
   #
   #
