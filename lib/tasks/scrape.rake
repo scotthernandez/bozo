@@ -71,6 +71,7 @@ namespace :scrape do
             response_times << Time.zone.parse(response_time.gsub("&nbsp;","")) if response_time            
           end
           
+          response_times.sort!
           article.link_time ||= response_times[0]
           article.first_response ||= response_times[1]
         end
