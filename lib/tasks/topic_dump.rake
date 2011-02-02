@@ -29,6 +29,9 @@ namespace :topic_dump do
           authors = responses.collect {|r| r["from"]}
           authors << root["from"]
           authors.uniq!
+          
+          response_times = responses.collect {|r| r["date"]}.sort
+          article.first_response = response_times.first
   
           article.link_time = link_time
           article.author = topic_author
