@@ -10,6 +10,7 @@ Category.create(:name => 'Bug')
 Category.create(:name => 'Doc')
 Category.create(:name => 'Design')
 Category.create(:name => 'Sales')
+Category.create(:name => 'Question')
 
 Status.create(:name => 'Open')
 Status.create(:name => 'Closed')

@@ -25,6 +25,7 @@ class Article
   key :subject,       String
   key :time_assigned, Time 
   key :time_closed,   Time 
+  key :first_response,Time 
   timestamps!
   
   # Cached values

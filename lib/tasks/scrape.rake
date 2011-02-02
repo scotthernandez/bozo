@@ -1,119 +1,102 @@
 namespace :scrape do
   desc "Scrape the mongodb_user page for new threads"
   task :mongodb_user => :environment do
+    require 'open-uri'
 
-    # get and preproces the google page. Using curl and grep gets around parsing a more complex page that
-    # most libraries tested barf on. 
-    snippet = `curl -s http://groups.google.com/group/mongodb-user | grep -A 14 \\"modtxtidt-20`
+    Time.zone = 'Eastern Time (US & Canada)'  # set the timezone.. it seems that the page we fetch from google has EST times
+    open_status = Status.find_by_name("Open")
+
+    # get and process the google page. 
+    snippet = open("http://groups.google.com/group/mongodb-user/topics?gvc=2").read
     doc     = Nokogiri::HTML(snippet)
 
-
-    # helper to extract the time out of the link
-    def getLinkTime(t)
-      begin
-        tt = Time.zone.parse(t).to_s
-        return tt[0, tt.length-4] #delete the 'UTC' trailer
-      rescue Exception => e
-        puts "error in getLinkTime"
-        puts e.message
-        puts e.backtrace.inspect
-      end
-    end
-
-
-    # user, time, author and replies 
-    linkUser    = Hash.new
-    linkTime    = Hash.new
-    linkAuthors = Hash.new
-    linkReplies = Hash.new
-    doc.xpath("//td/span[2]").each_with_index { |a, i|
-      a.inner_html.split("-").each_with_index { |x, ii|
-        x.strip!
-        case ii
-          when 0
-            linkUser[i]=x[3, 100]
-          when 1
-            linkTime[i]=getLinkTime(x)
-          when 2
-            linkAuthors[i]=x.to_i
-          when 3
-            linkReplies[i]=x.to_i
+    doc.xpath("//div[@class='maincontoutboxatt']/table").each do |table|
+      table.element_children.each_with_index do |tr, index|
+        tds = tr.element_children
+        
+        topic_elm    = tds[1].first_element_child()
+        replies_elm  = tds[3].first_element_child()
+        user_elm     = tds[4]
+        
+        if not topic_elm.has_attribute?('href')  # ignore header rows
+          next
         end
-        print "#{i}: #{x}\n"
-      }
-    }
+        
+        url         = topic_elm.get_attribute('href')
+        thread      = url.match(/(\/thread|t)\/(\w+)#*$/) && $2
+        subject     = topic_elm.inner_text
+        replies     = ((replies_elm.inner_text || "").split("of")[1] || 1).to_i - 1
+        author      = user_elm.inner_text.match(/\(\d+ \w+\)$/) && $`
+        num_authors = (user_elm.inner_text.match(/\((\d+)/) && $1).to_i
+        send_alerts = false
 
-    linkUrl  = Hash.new
-    linkId   = Hash.new
-    linkText = Hash.new
-    doc.xpath("//a").each_with_index do |link, i|
-      linkText[i]=link.inner_html
-      linkUrl[i] =link['href']
-      linkId[i]  =linkUrl[i][22, 50]
-      print ">> #{i}:  #{linkUrl[i]}\n"
-      print ">> #{i}:  #{linkText[i]}\n"
-      print ">> #{i}:  #{linkId[i]}\n"
-    end
+        article = Article.where(:thread => thread).first
+        
+        if (not article.nil?) # check if article already in collection
+          puts "[exists] #{index - 1}\t #{thread}\t #{subject[0,40]}...\n"
+          
+        else # article not in collection so save it!
+          puts "[create] #{index - 1}\t #{thread}\t #{subject[0,40]}...\n"
+          send_alerts = true
+          
+          article            = Article.new
+          article.thread     = thread
+          article.url        = url && url.strip
+          article.subject    = subject && subject.strip
+          article.author     = author && author.strip
+          article.replies    = replies
+          article.authors    = num_authors
+          article.category   = nil
+          article.user       = nil
+          article.status     = open_status
+          article.status_name= open_status.name
+          article.created_at = Time.now
+        end
 
-    (0..(linkId.length-1)).each do |i|
-
-      res = Article.where(:thread => linkId[i]).first
-
-      # article  already in database
-      if (not res.nil?)
+        article.replies   = replies
+        article.authors   = num_authors
+        
+        # set response times
+        if article.link_time.nil? or article.first_response.nil? #
+          response_times = []
+          response_doc = Nokogiri::HTML(open("http://groups.google.com" + (url || "")).read)
+          
+          response_doc.xpath("//div[@id='msgs']/div//table[@id='top']").each do |res_table|
+            res_tbody = res_table.element_children.last
+            res_tr = res_tbody.element_children.last 
+            res_tds = res_tr.element_children
+            res_time_wrapper = res_tds[2] && res_tds[2].element_children.last
+            res_time_span = res_time_wrapper && res_time_wrapper.element_children.last
+            response_time = res_time_span && res_time_span.inner_text 
+            response_times << Time.zone.parse(response_time.gsub("&nbsp;","")) if response_time            
+          end
+          
+          article.link_time ||= response_times[0]
+          article.first_response ||= response_times[1]
+        end
+        
+        # save the record
         begin
-          puts "Article already in collection #{i} #{linkId[i]}  #{linkTime[i]}\n"
-          puts "(#{res.authors}):#{linkAuthors[i]} (#{res.link_time}):#{linkTime[i]} (#{res.replies}):#{linkReplies}"
-
-          res.authors   = linkAuthors[i].to_i
-          res.link_time = Time.zone.parse(linkTime[i])
-          res.replies   = linkReplies[i].to_i
-          res.save
+          article.save
         rescue Exception => e
           puts e.message
           puts e.backtrace.inspect
         end
-
-#        puts "Calling Alertmailer"
-#
-#        begin
-#          AlertMailer.email_new_thread(res.thread, res.subject).deliver
-#          AlertMailer.sms_new_thread(res.thread, res.subject).deliver
-#        rescue Exception => e
-#          puts "Alert : "
-#          puts e.message
-#        end
-
-      else
-        s            = Status.find_by_name("Open")
-        g            = Article.new
-        g.thread     = linkId[i]
-        g.url        = linkUrl[i]
-        g.subject    = linkText[i]
-        g.author     = linkUser[i]
-        g.link_time  = Time.zone.parse(linkTime[i])
-        g.replies    = linkReplies[i]
-        g.authors    = linkAuthors[i]
-        g.user       = User.find_by_id(1)
-        g.status     = s
-        g.status_name= s.name
-        g.created_at = Time.now
-
-        g.save
-
-        puts "Calling Alertmailer"
-
-        begin
-          thread = "http://groups.google.com" + (g.url || "")
-          AlertMailer.email_new_thread(thread, g.subject).deliver
-          AlertMailer.sms_new_thread(thread, g.subject).deliver
-        rescue Exception => e
-          puts "Alert : "
-          puts e.message
+          
+        if send_alerts
+          puts "[alerts] \t sending..."
+  
+          begin
+            thread_url = "http://groups.google.com" + (article.url || "")
+            AlertMailer.email_new_thread(thread_url, article.subject).deliver
+            AlertMailer.sms_new_thread(thread_url, article.subject).deliver
+          rescue Exception => e
+            puts "Alert : "
+            puts e.message
+          end
         end
       end
-
     end
 
-  end
-end
+  end # of mongodb_user task
+end # of scrape task
