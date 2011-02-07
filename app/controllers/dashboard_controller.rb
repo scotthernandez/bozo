@@ -3,7 +3,7 @@
 #
 class DashboardController < ApplicationController
   
-   before_filter :authenticate_user!, :except => :index
+   before_filter :authenticate_user!
   
   #
   #
@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
     @articles = Article.where(:replies.gte => 1, 
                               :status_id.ne => closed_status.id).sort(:link_time.desc, :id.desc).paginate(:page => params[:page])
 
-    @closed_articles = Article.where(:status_id => closed_status.id).sort(:link_time.desc, :id.desc).all
+#    @closed_articles = Article.where(:status_id => closed_status.id).sort(:link_time.desc, :id.desc).paginate(:page => params[:page])
 
     @users = User.all(:order => "id")
     @categories = Category.all
@@ -41,7 +41,8 @@ class DashboardController < ApplicationController
                                :user_id => user_id, 
                                :status_id.ne => closed_status.id}).sort(:link_time.desc).all
 
-    @closed_articles = Article.where(:user_id => user_id, :status_id => closed_status.id).sort(:link_time.desc, :id.desc).all
+    @closed_articles = Article.where(:user_id => user_id, 
+                                    :status_id => closed_status.id).sort(:link_time.desc, :id.desc).paginate(:page => params[:page])
 
     @users = User.all(:order => "id")
     @categories = Category.all

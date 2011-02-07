@@ -2,6 +2,7 @@
   <%= render :partial => "/dashboard/article_update_form" %>
 <% end %>
 
+<% @page_auto_refresh = (params[:page].to_i <= 1) %>
 
 <h3>Articles without a reply, not closed</h3>
 <% if !@articles_no_reply.empty? %>
@@ -24,7 +25,8 @@
       <% end %>
     </tbody>
   </table>
-
+  <br/>
+  
   <%= will_paginate @articles_no_reply %>
 
 <% else %>

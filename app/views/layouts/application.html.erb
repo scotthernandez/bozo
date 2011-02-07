@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bozo</title>
-  <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag '10gen/jquery-ui' %>
-  <%= javascript_include_tag "jquery", "jquery-ui.min", "highcharts" %>
-  <%= javascript_include_tag "rails" %>
-
-  <%= csrf_meta_tag %>
-</head>
+  <head>
+    <title>Bozo</title>
+    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag '10gen/jquery-ui' %>
+    <%= javascript_include_tag "jquery", "jquery-ui.min", "highcharts" %>
+    <%= javascript_include_tag "rails" %>
+  
+    <%= csrf_meta_tag %>
+    
+    <% if @page_auto_refresh  %>
+      <META HTTP-EQUIV="REFRESH" CONTENT="30">
+    <% end %>
+  </head>
+  
   <body style="padding:0 20px">
     <%= render 'layouts/header' %>
     <br/>
